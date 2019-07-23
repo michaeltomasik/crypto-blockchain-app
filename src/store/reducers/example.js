@@ -1,4 +1,4 @@
-import actionTypes from '../../constants/actionTypes';
+import actionTypes from '../../constants/actions';
 
 const example = (state = {}, action) => {
   switch (action.type) {

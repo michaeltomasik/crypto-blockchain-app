@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { url } from '../../constants/url';
+import { addressData } from '../../constants/url';
 
-export const getDatasAPI = async () =>
-  await axios(url);
+export const getAddressDataAPI = async ({ address }) =>
+  await axios(`${addressData}/${address}?cors=true`);

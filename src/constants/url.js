@@ -1,1 +1,1 @@
-export const url = "";
+export const addressData = 'https://blockchain.info/rawaddr';
