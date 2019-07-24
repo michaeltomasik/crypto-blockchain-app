@@ -1,5 +1,6 @@
 import React from 'react';
 import { Table } from 'react-bootstrap';
+import numeral from 'numeral';
 
 class TransactionTable extends React.Component {
   constructor(){
@@ -25,7 +26,8 @@ class TransactionTable extends React.Component {
             <tr>
               <td>{transaction.hash}</td>
               <td>{transaction.date}</td>
-              <td>{`${transaction.inputs[0].prev_out.spent ? '-' : '+'} ${transaction.out[0].value}`}</td>
+              <td>{`${transaction.inputs[0].prev_out.addr === this.props.address ? '-' : '+'}
+              ${transaction.inputs[0].prev_out.addr === this.props.address ? transaction.out[0].value : transaction.out[transaction.out.length-1].value}`}</td>
               {/* <td>{`${transaction.inputs[0].prev_out.spent ? '-' : '+'}
                 ${transaction.inputs.reduce((prev, input) => prev + input.prev_out.value, 0)}`}
               </td> */}

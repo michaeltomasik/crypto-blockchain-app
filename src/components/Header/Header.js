@@ -1,5 +1,7 @@
 import React from 'react';
-import { FormControl, Button } from 'react-bootstrap';
+import { InputGroup, FormControl, Button } from 'react-bootstrap';
+
+import './Header.css';
 
 class Header extends React.Component {
   constructor(){
@@ -23,14 +25,22 @@ class Header extends React.Component {
   render() {
     return (
       <div className="Header">
-        <FormControl
-          autoFocus
-          className="mx-3 my-2 w-auto"
-          placeholder="Type to filter..."
-          onChange={this.handleChange}
-          value={this.state.value}
-        />
-        <Button onClick={this.searchAddress}>Search</Button>
+        <div className="Header-title">Blockchain Frontend App</div>
+        <div className="Header-search">
+          <InputGroup>
+            <FormControl
+              autoFocus
+              placeholder="Type account address"
+              onChange={this.handleChange}
+              value={this.state.value}
+              aria-describedby="basic-addon2"
+            />
+
+            <InputGroup.Append>
+              <Button onClick={this.searchAddress}>Search</Button>
+            </InputGroup.Append>
+          </InputGroup>
+        </div>
       </div>
     );
   }

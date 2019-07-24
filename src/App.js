@@ -4,7 +4,7 @@ import AccountDetails from './views/AccountDetails';
 import Header from './components/Header';
 
 const App = () => (
-  <div>
+  <div className="App">
     <Header />
     <Router>
       <Route path="/" exact component={AccountDetails} />

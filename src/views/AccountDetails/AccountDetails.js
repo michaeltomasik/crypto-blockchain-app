@@ -16,7 +16,7 @@ class AccountDetails extends React.Component {
               <Row>{final_balance}</Row>
             </Col>
           </Row>
-          { txs ? <TransactionTable transactions={txs} /> : null}
+          { txs ? <TransactionTable transactions={txs} address={address} /> : null}
         </Container>
       </div>
     );
