@@ -1,9 +1,10 @@
 import React from 'react';
 import { Container, Row, Col } from 'react-bootstrap';
+import TransactionTable from '../../components/TransactionTable';
 
 class AccountDetails extends React.Component {
   render() {
-    const { address, final_balance } = this.props.account;
+    const { address, final_balance, txs } = this.props.account;
     console.log(this.props)
     return (
       <div className="App">
@@ -15,6 +16,7 @@ class AccountDetails extends React.Component {
               <Row>{final_balance}</Row>
             </Col>
           </Row>
+          { txs ? <TransactionTable transactions={txs} /> : null}
         </Container>
       </div>
     );
