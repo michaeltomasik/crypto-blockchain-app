@@ -1,13 +1,15 @@
 import React from 'react';
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import AccountDetails from './views/AccountDetails';
+import DefaultPage from './views/DefaultPage';
 import Header from './components/Header';
 
 const App = () => (
   <div className="App">
-    <Header />
     <Router>
-      <Route path="/" exact component={AccountDetails} />
+      <Header />
+      <Route path="/" exact component={DefaultPage} />
+      <Route path="/:address" component={AccountDetails} />
     </Router>
   </div>
 );

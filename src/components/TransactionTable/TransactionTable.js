@@ -1,6 +1,8 @@
 import React from 'react';
 import { Table } from 'react-bootstrap';
-import numeral from 'numeral';
+import satoshiBitcoin from 'satoshi-bitcoin';
+
+import './TransactionTable.css';
 
 class TransactionTable extends React.Component {
   constructor(){
@@ -13,7 +15,7 @@ class TransactionTable extends React.Component {
 
   render() {
     return (
-      <Table responsive="sm">
+      <Table responsive="lg">
         <thead>
           <tr>
             <th>Hash</th>
@@ -22,17 +24,20 @@ class TransactionTable extends React.Component {
           </tr>
         </thead>
         <tbody>
-          {this.props.transactions.map(transaction =>
-            <tr>
+          {this.props.transactions.map(transaction =>{
+            const isSendingMoney = transaction.inputs.find(t => t.prev_out.addr === this.props.address);
+            
+            return (<tr className={isSendingMoney ? 'row-send' : 'row-recieve'}>
               <td>{transaction.hash}</td>
               <td>{transaction.date}</td>
-              <td>{`${transaction.inputs[0].prev_out.addr === this.props.address ? '-' : '+'}
-              ${transaction.inputs[0].prev_out.addr === this.props.address ? transaction.out[0].value : transaction.out[transaction.out.length-1].value}`}</td>
-              {/* <td>{`${transaction.inputs[0].prev_out.spent ? '-' : '+'}
-                ${transaction.inputs.reduce((prev, input) => prev + input.prev_out.value, 0)}`}
-              </td> */}
-            </tr>
-          )}
+              <td>{isSendingMoney ?
+                `- ${satoshiBitcoin.toBitcoin(transaction.inputs
+                    .filter(t => t.prev_out.addr === this.props.address)
+                    .reduce((prev, current) => prev + current.prev_out.value, 0))}` :
+                `+ ${satoshiBitcoin.toBitcoin(transaction.out.filter(t => t.addr === this.props.address)
+                  .reduce((prev, current) => prev + current.value, 0))}`}</td>
+            </tr>)
+          })}
         </tbody>
       </Table>
     );

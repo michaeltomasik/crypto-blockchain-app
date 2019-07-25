@@ -1,0 +1,10 @@
+.AccountDetails-avatar, .AccountDetails-summary, .AccountDetails-radio, .AccountDetails-radio-label {
+  margin-left: 15px;
+  margin-right: 15px;
+}
+
+.AccountDetails-filters {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 10px;
+}

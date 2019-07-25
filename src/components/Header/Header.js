@@ -1,11 +1,10 @@
 import React from 'react';
-import { InputGroup, FormControl, Button } from 'react-bootstrap';
+import { InputGroup, FormControl, Button, Navbar, Nav } from 'react-bootstrap';
 
-import './Header.css';
 
 class Header extends React.Component {
-  constructor(){
-    super();
+  constructor(props){
+    super(props);
 
     this.state = {
       value: '',
@@ -17,31 +16,27 @@ class Header extends React.Component {
   }
 
   searchAddress = () => {
-    this.props.loadAccount({
-      address: this.state.value,
-    });
+    this.props.history.replace(`/${this.state.value}`);
   }
 
   render() {
     return (
-      <div className="Header">
-        <div className="Header-title">Blockchain Frontend App</div>
-        <div className="Header-search">
-          <InputGroup>
-            <FormControl
-              autoFocus
-              placeholder="Type account address"
-              onChange={this.handleChange}
-              value={this.state.value}
-              aria-describedby="basic-addon2"
-            />
+      <Navbar bg="light" expand="lg">
+        <Navbar.Brand className="mr-auto" href="">Blockchain Frontend App</Navbar.Brand>
+        <Nav>
+          <FormControl
+            autoFocus
+            placeholder="Type account address"
+            onChange={this.handleChange}
+            value={this.state.value}
+            aria-describedby="basic-addon2"
+          />
 
-            <InputGroup.Append>
-              <Button onClick={this.searchAddress}>Search</Button>
-            </InputGroup.Append>
-          </InputGroup>
-        </div>
-      </div>
+          <InputGroup.Append>
+            <Button onClick={this.searchAddress}>Search</Button>
+          </InputGroup.Append>
+        </Nav>
+      </Navbar>
     );
   }
 }

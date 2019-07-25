@@ -1,4 +1,6 @@
 import actionTypes from '../constants/actions';
+import { TRANSACTION_FILTERS } from '../constants/transactions';
+import { loadingStarted, loadingFinished } from './loading';
 import { getAddressDataAPI } from '../utils/api';
 
 export const searchTransaction = data => ({
@@ -7,11 +9,11 @@ export const searchTransaction = data => ({
 });
 
 export const loadAccount = ({
-  address, limit=50, offset=0,
+  address, limit=50, offset=0, filter=TRANSACTION_FILTERS.ALL
 }) =>
   (dispatch, getState) => {
-    // dispatch(loadingStarted());
-    getAddressDataAPI({ address, limit, offset })
+    dispatch(loadingStarted('account'));
+    getAddressDataAPI({ address, limit, offset, filter })
       .then((response) => {
         dispatch({
           data: {
@@ -19,6 +21,6 @@ export const loadAccount = ({
           },
           type: actionTypes.searchAccount,
         });
-        // dispatch(loadingFinished());
+        dispatch(loadingFinished('account'));
       });
   };
