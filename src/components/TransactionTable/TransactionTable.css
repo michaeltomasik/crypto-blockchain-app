@@ -1,7 +1,27 @@
+.TransactionTable-Details {
+  background-color: rgba(211, 231, 175, 0.856);
+}
+
 .row-send {
+  cursor: pointer;
   background-color: rgb(255, 172, 172);
 }
 
 .row-recieve {
+  cursor: pointer;
   background-color: rgb(146, 255, 219);
+}
+
+.row-active {
+  border: 3px solid green;
+  box-shadow: 0 0 25px rgb(156, 221, 199);
+  transition: border .15s ease-in-out,box-shadow .15s ease-in-out;
+}
+
+.arrow-right {
+  width: 0; 
+  height: 0; 
+  border-top: 30px solid transparent;
+  border-bottom: 30px solid transparent;
+  border-left: 30px solid;
 }
