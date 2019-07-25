@@ -1,5 +1,13 @@
-.TransactionTable-Details {
+.table {
   background-color: rgba(211, 231, 175, 0.856);
+}
+
+.table thead {
+  background-color: white;
+}
+
+.table tr td:last-child, .table tr th:last-child {
+  text-align: right;
 }
 
 .row-send {

@@ -8,3 +8,8 @@
   justify-content: flex-end;
   margin-bottom: 10px;
 }
+
+.AccountDetails-pagination {
+  display: flex;
+  justify-content: center;
+}

@@ -22,7 +22,7 @@ class TransactionTable extends React.Component {
 
   render() {
     return (
-      <Table responsive="lg" className="TransactionTable">
+      <Table responsive="sm" className="TransactionTable">
         <thead>
           <tr>
             <th>Hash</th>
@@ -48,24 +48,22 @@ class TransactionTable extends React.Component {
                     `+ ${satoshiBitcoin.toBitcoin(transaction.out.filter(t => t.addr === this.props.address)
                       .reduce((prev, current) => prev + current.value, 0))}`}</td>
                 </tr>
-                {activeToggle ?
-                  <tr className="TransactionTable-Details">
-                    <td>
-                      <h5>From</h5>
-                      {transaction.inputs.map(acc => <p>{acc.prev_out.addr}</p>)}
-                    </td>
-                    <td>
-                      <div
-                        className="arrow-right"
-                        style={{ borderLeftColor: isSendingMoney ? 'red' : 'green' }}/>
-                    </td>
-                    <td>
-                      <h5>To</h5>
-                      {transaction.out.map(acc => <p>{acc.addr}</p>)}
-                    </td>
-
-                  </tr> :
-                  null}
+                  <tr className="TransactionTable-details">
+                    {activeToggle ?
+                    <>
+                      <td>
+                        <h5>From</h5>
+                        {transaction.inputs.map(acc => <p>{acc.prev_out.addr}</p>)}
+                      </td>
+                      <td>
+                        <img src={`https://www.blockchain.com/Resources/arrow_right_${isSendingMoney ? 'red' : 'green'}.png`} />
+                      </td>
+                      <td>
+                        <h5>To</h5>
+                        {transaction.out.map(acc => <p>{acc.addr}</p>)}
+                      </td>
+                    </>: null}
+                  </tr> 
               </>)
           })}
         </tbody>

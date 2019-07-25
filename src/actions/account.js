@@ -9,11 +9,11 @@ export const searchTransaction = data => ({
 });
 
 export const loadAccount = ({
-  address, limit=50, offset=0, filter=TRANSACTION_FILTERS.ALL
+  address, limit=50, offset=0, filter=TRANSACTION_FILTERS.ALL,
 }) =>
   (dispatch, getState) => {
     dispatch(loadingStarted('account'));
-    getAddressDataAPI({ address, limit, offset, filter })
+    getAddressDataAPI({ address, params: { limit, offset, filter } })
       .then((response) => {
         dispatch({
           data: {

@@ -2,6 +2,8 @@ import React from 'react';
 import { Container, Row, Form } from 'react-bootstrap';
 import Identicon from 'react-identicons';
 import satoshiBitcoin from 'satoshi-bitcoin';
+import Pagination from 'rc-pagination';
+import 'rc-pagination/assets/index.css';
 
 import TransactionTable from '../../components/TransactionTable';
 import Spinner from '../../components/Spinner';
@@ -16,6 +18,7 @@ class AccountDetails extends React.Component {
 
     this.state = {
       filter: TRANSACTION_FILTERS.ALL,
+      current: 1,
     }
   }
   componentDidMount() {
@@ -28,19 +31,31 @@ class AccountDetails extends React.Component {
     }
   }
 
-  loadAccount() {
+  loadAccount(data) {
     this.props.loadAccount({
       address: this.props.match.params.address,
       filter: this.state.filter,
+      ...data,
     });
   }
 
   onRadioChange = (e) => {
     this.setState({
       filter: e.target.value,
-    })
-    this.loadAccount();
+    }, () => {
+      this.loadAccount();
+    });
   }
+
+  handlePageClick = page => {
+    const perPage = 50;
+    let offset = Math.ceil(page * perPage);
+
+    this.loadAccount({ offset });
+    this.setState({
+      current: page,
+    });
+  };
 
   render() {
     const { address, final_balance, n_tx, txs } = this.props.account;
@@ -116,6 +131,16 @@ class AccountDetails extends React.Component {
                 </div>
               </Row>
               <TransactionTable transactions={txs} address={this.props.match.params.address} />
+              <div className="AccountDetails-pagination">
+                { this.state.filter === TRANSACTION_FILTERS.ALL ?
+                  <Pagination
+                    onChange={this.handlePageClick}
+                    pageSize={50}
+                    current={this.state.current}
+                    total={n_tx-n_tx%50} // pagination bug - renders 1 additional page
+                  />
+                  : null}
+              </div>
             </div> : null}
         </Container>
       </div>
