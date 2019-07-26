@@ -1,5 +1,6 @@
 import actionTypes from '../constants/actions';
 import { TRANSACTION_FILTERS } from '../constants/transactions';
+import { webSocket } from '../constants/url';
 import { loadingStarted, loadingFinished } from './loading';
 import { getAddressDataAPI } from '../utils/api';
 
@@ -18,10 +19,10 @@ export const loadAccount = ({
     getAddressDataAPI({ address, params: { limit, offset, filter } })
       .then((response) => {
         if(!connection) {
-          connection = new WebSocket('wss://ws.blockchain.info/inv');
+          connection = new WebSocket(webSocket);
   
           connection.onopen = (evt) => { 
-            connection.send(JSON.stringify({"op":"addr_sub", "addr": address }));
+            connection.send(JSON.stringify({ op: 'addr_sub', addr: address }));
           };
   
           connection.onmessage = (response) => {

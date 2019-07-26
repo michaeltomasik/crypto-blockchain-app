@@ -10,13 +10,16 @@
   text-align: right;
 }
 
-.row-send {
+.row-transaction {
   cursor: pointer;
+  font-size: 14px;
+}
+
+.row-send {
   background-color: rgb(255, 172, 172);
 }
 
 .row-recieve {
-  cursor: pointer;
   background-color: rgb(146, 255, 219);
 }
 

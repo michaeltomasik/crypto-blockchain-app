@@ -1,0 +1,10 @@
+.Home {
+  height: 94vh;
+  background: url('https://storage.needpix.com/rsynced_images/bitcoin-3227442_1280.jpg') no-repeat top left fixed;
+  background-size: cover;
+  padding: 15px;
+}
+
+.Home-btc-address {
+  cursor: pointer;
+}

@@ -1,7 +1,7 @@
 export const TRANSACTION_FILTERS = {
-  SENT: 1,
-  RECEIVED: 2,
-  ALL: 4,
+  ALL: { label: 'All', value: 4 },
+  SENT: { label: 'Sent', value: 1 },
+  RECEIVED: { label: 'Received', value: 2 },
 };
 
 export const TRANSACTION_SORT = {

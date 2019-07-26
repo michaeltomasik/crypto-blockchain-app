@@ -1,0 +1,7 @@
+.Header {
+  z-index: 10;
+}
+
+.navbar-nav {
+  flex-direction: row;
+}

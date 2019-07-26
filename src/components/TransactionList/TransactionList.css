@@ -1,15 +1,19 @@
-.AccountDetails-avatar, .AccountDetails-summary, .AccountDetails-radio, .AccountDetails-radio-label {
+.TransactionList-radio, .TransactionList-radio-label {
   margin-left: 15px;
   margin-right: 15px;
 }
 
-.AccountDetails-filters {
+.TransactionList-filters {
   display: flex;
   justify-content: flex-end;
   margin-bottom: 10px;
 }
 
-.AccountDetails-pagination {
+.TransactionList-pagination {
   display: flex;
   justify-content: center;
+}
+
+.custom-control-label {
+  cursor: pointer;
 }
