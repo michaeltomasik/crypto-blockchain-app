@@ -32,7 +32,7 @@ class TransactionTable extends React.Component {
         </thead>
         <tbody>
           {this.props.transactions.map((transaction, index) =>{
-            const isSendingMoney = transaction.inputs.find(t => t.prev_out.addr === this.props.address);
+            const isSendingMoney = transaction.inputs.find(t => t.prev_out && t.prev_out.addr === this.props.address);
             const activeToggle = this.state.toggledDetails === index+1;
             return (
               <>
