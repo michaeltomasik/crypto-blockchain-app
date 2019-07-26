@@ -17,18 +17,20 @@ export const loadAccount = ({
     dispatch(loadingStarted('account'));
     getAddressDataAPI({ address, params: { limit, offset, filter } })
       .then((response) => {
-        connection = new WebSocket('wss://ws.blockchain.info/inv');
-
-        connection.onopen = (evt) => { 
-          connection.send(JSON.stringify({"op":"addr_sub", "addr": address }));
-        };
-
-        connection.onmessage = (response) => {
-          dispatch({
-            data: JSON.parse(response.data).x,
-            type: actionTypes.addTransaction,
-          });
-        };
+        if(!connection) {
+          connection = new WebSocket('wss://ws.blockchain.info/inv');
+  
+          connection.onopen = (evt) => { 
+            connection.send(JSON.stringify({"op":"addr_sub", "addr": address }));
+          };
+  
+          connection.onmessage = (response) => {
+            dispatch({
+              data: JSON.parse(response.data).x,
+              type: actionTypes.addTransaction,
+            });
+          };
+        }
 
         dispatch({
           data: {
