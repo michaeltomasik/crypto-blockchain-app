@@ -1,0 +1,3 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders home page 1`] = `"<div class=\\"Home\\"><h3>Click to Copy BTC Addresses</h3><div class=\\"Home-btc-address\\"><div>- 19wJuNeV2Hd4WTxa8vDrvV3StSdMzoyPi9</div></div><div class=\\"Home-btc-address\\"><div>- 3EaWcuNXQrW2JTGy5Cotm4pftovW8UfR2o</div></div><div class=\\"Home-btc-address\\"><div>- 3H5gRBEowwSqr3ckY2MKwLsn64KdpU2gQg</div></div></div>"`;

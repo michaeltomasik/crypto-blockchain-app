@@ -13,11 +13,11 @@ const Home = () => (
   <div className="Home">
     <h3>Click to Copy BTC Addresses</h3>
     {exampleBTCAddress.map(address => 
-      <p className="Home-btc-address">
+      <div key={address} className="Home-btc-address">
         <CopyToClipboard text={address}>
           <div>- {address}</div>
         </CopyToClipboard>
-      </p>)}
+      </div>)}
   </div>
 );
 

@@ -55,11 +55,11 @@ class TransactionTable extends React.Component {
                     <Fragment>
                       <td>
                         <h5>From</h5>
-                        {transaction.inputs.map(acc =>
-                          <p>
+                        {transaction.inputs.map((acc, index) =>
+                          <div key={`inputs-transaction-${index}`}>
                             <Link to={`/${acc.prev_out.addr}`}>{acc.prev_out.addr}</Link>
                             <p>{`(${satoshiBitcoin.toBitcoin(acc.prev_out.value)} BTC)`}</p>
-                          </p>
+                          </div>
                         )}
                       </td>
                       <td>
@@ -67,11 +67,11 @@ class TransactionTable extends React.Component {
                       </td>
                       <td>
                         <h5>To</h5>
-                        {transaction.out.map(acc =>
-                          <p>
+                        {transaction.out.map((acc, index) =>
+                          <div key={`out-transaction-${index}`}>
                             <Link to={`/${acc.addr}`}>{acc.addr}</Link>
                             <p>{`(${satoshiBitcoin.toBitcoin(acc.value)} BTC)`}</p>
-                          </p>
+                          </div>
                         )}
                       </td>
                     </Fragment>
